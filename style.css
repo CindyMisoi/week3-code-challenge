@@ -1,0 +1,56 @@
+body {
+    background-color: #020202;
+  }
+  
+  .heading {
+    background-color: #333333;
+    margin-bottom: 20px;
+    padding: 5px 0px 5px 15px;
+  }
+  
+  .title {
+    background-color: #181616;
+    padding: 5px;
+    color: white;
+  }
+  
+  #runtime {
+    background-color: #333333;
+    color:coral;
+    padding: 0px 0px 5px 5px;
+  }
+  
+  .content {
+    color: coral;
+  }
+  
+  #subtitle {
+    color: coral;
+    margin-left: 55px;
+  }
+  
+  #showing {
+    margin-left: 20px;
+  }
+  
+  #films li::before {
+    content: "";
+  }
+  
+  .film {
+    color: antiquewhite;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  .sold-out {
+    color: lightgray;
+  }
+  
+  img {
+    max-width: 25vw;
+  }
+  
+  #film-info {
+    padding-bottom: 15px;
+  }
