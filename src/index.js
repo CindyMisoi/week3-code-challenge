@@ -1,5 +1,12 @@
 const baseUrl = 'http://localhost:3000/films';
 
+//fetch film data
+function getFilmData(){
+    return fetch(baseUrl)
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
+
 //get movie titles 
 function getMovieTitles(){
 return fetch(baseUrl)
@@ -21,7 +28,7 @@ movieTitleList.addEventListener('click', onTitleClick)
 
 //get movie info
 function getMovieDetails (id) {
-    return fetch(baseUrl + `/${2}`)
+    return fetch(baseUrl + `/${1}`)
     .then(response => response.json())
 }
 
@@ -39,7 +46,7 @@ posterChange.src = film.poster
 const movieTitle = document.getElementById('title')
 movieTitle.innerText = film.title
 const runtime = document.getElementById('runtime')
-runtime.innerText = film.runtime
+runtime.innerText = film.runtime 
 const description = document.getElementById('film-info')
 description.innerText = film.description
 const showTime = document.getElementById('showtime')
@@ -63,6 +70,7 @@ button.addEventListener('click', (e)=>{
 }
 //loader
 document.addEventListener('DOMContentLoaded', () => {
+    getFilmData()
     getMovieTitles()
     getMovieDetails()
 })
