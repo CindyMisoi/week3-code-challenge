@@ -18,7 +18,7 @@ return fetch(baseUrl)
 function renderMovieTitleList(film){
 const unoderedList = document.querySelector('#films')
 const movieTitleList = document.createElement('li')
-movieTitleList.id = "list--title"
+movieTitleList.dataset.id = film.id;
 movieTitleList.className = "lists"
 movieTitleList.textContent = film.title
 unoderedList.appendChild(movieTitleList)
@@ -30,7 +30,7 @@ getMovieTitles().then(films => films.forEach(film => {
 
 //get movie info
 function getMovieDetails (id) {
-    return fetch(baseUrl + `/${1}`)
+    return fetch(baseUrl + `/${id}`)
     .then(response => response.json())
 }
 
