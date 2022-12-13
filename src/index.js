@@ -11,7 +11,6 @@ function getFilmData(){
 function getMovieTitles(){
 return fetch(baseUrl)
 .then(res => res.json())
-.then(films => films.forEach(film => renderMovieTitleList(film)))
 }
 
 
@@ -19,12 +18,15 @@ return fetch(baseUrl)
 function renderMovieTitleList(film){
 const unoderedList = document.querySelector('#films')
 const movieTitleList = document.createElement('li')
+movieTitleList.id = "list--title"
 movieTitleList.className = "lists"
 movieTitleList.textContent = film.title
 unoderedList.appendChild(movieTitleList)
-movieTitleList.addEventListener('click', onTitleClick)
+unoderedList.addEventListener('click', onTitleClick)
 }
-
+getMovieTitles().then(films => films.forEach(film => {
+    renderMovieTitleList(film)
+}))
 
 //get movie info
 function getMovieDetails (id) {
@@ -33,9 +35,15 @@ function getMovieDetails (id) {
 }
 
 //click title to get details and change the poster
-function onTitleClick(event){
-    getMovieDetails(event.target.dataset.id)
-   .then(renderMovieDetails)
+function onTitleClick(e){
+    getMovieDetails(e.target.dataset.id)
+    .then(renderMovieDetails)
+    // console.log(e.target.getAttribute('id') + ' is clicked'); 
+    // const target = e.target
+    // target.style.background = "lightgrey"
+    // if(target == document.getElementById("films")){
+    //   getMovieDetails(renderMovieDetails(film))
+    // }
 }
 
 
@@ -58,6 +66,7 @@ remainingTickets.innerText = film.capacity - film.tickets_sold
 //Buy ticket
 const button = document.querySelector('.ui.orange.button')
 button.addEventListener('click', (e)=>{
+    e.preventDefault()
     if(remainingTickets.innerText <= 0){
         let buttonDiv = document.querySelector('.extra.content');
         buttonDiv.innerHTML=`<button>Sold Out</button>`
@@ -70,7 +79,6 @@ button.addEventListener('click', (e)=>{
 }
 //loader
 document.addEventListener('DOMContentLoaded', () => {
-    getFilmData()
     getMovieTitles()
     getMovieDetails()
 })
